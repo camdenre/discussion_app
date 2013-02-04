@@ -2,7 +2,7 @@ var app = app || {};
 
 var CommentList = Backbone.Collection.extend({
 
-  model: app.Comments,
+  model: app.Comment,
 
   // Use local storage to save comments, not a remote server
   localStorage: new Backbone.LocalStorage('CommentList'),
@@ -13,5 +13,4 @@ var CommentList = Backbone.Collection.extend({
   }
 });
 
-// Create our global collection of **Todos**.
 app.Comments = new CommentList();

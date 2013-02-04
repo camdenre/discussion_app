@@ -1,7 +1,7 @@
- var app = app || {};
+var app = app || {};
 
- $(function() {
+$(function() {
+  localStorage.clear();
+  new app.AppView({ el: $("#app_container") });
 
-    new app.AppView();
-
-  });
+});
