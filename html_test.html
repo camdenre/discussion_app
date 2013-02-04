@@ -5,44 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Discussion App</title>
     <link rel="stylesheet" href="assets/base.css">
+    <script type="text/template" id="total_posts_template">
+      <%= total_comments %> Comments
+    </script>
+    <script type="text/template" id="comment_template">
+      <div class="row">
+          <img class="profile_pic" src="<%= profile_pic %>">
+          <div class="comment_info">
+            <div class="name"><%= name %></div>
+            <div class="date"><%= date %></div>
+          </div>
+        </div>
+        <div class="message_body">
+          <div class="message_text"><%= message %></div>
+        </div>
+        <div class="row">
+          <div class="votes">
+            <button class="up_vote"><img class="vote_img" src="assets/up_vote.png"></button>
+            <span class="up_vote_num"><%= num_up_votes %></span>
+            <button class="down_vote"><img class="vote_img" src="assets/down_vote.png"></button>
+            <span class="down_vote_num"><%= num_down_votes %></span>
+          </div>
+          <div class="reply">
+            <button class="reply_botton">Reply</button>
+          </div>
+        </div>
+    </script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js"></script>
+    <script src="js/models/comment.js"></script>
+    <script src="js/collections/Comments.js"></script>
+    <script src="js/views/app.js"></script>
+
   </head>
   <body>
+    <section id="app_container">
+      <div id="header">
+        <div class="row">
+          <span id="num_comments">22 Comments</span>
+        </div>
+        <div class="row">
+          <img class="profile_pic" src="http://www.wempec.wisc.edu/images/default_profile_image.gif">
+          <textarea id="message_textarea">Type your comments here...</textarea>
+        </div>
+        <div class="row">
+          <button id="submit">Submit</button>
+        </div>
+      </div>
 
-    <div id="header">
-      <div class="row">
-        <span id="num_comments">22 Comments</span>
-      </div>
-      <div class="row">
-        <img class="profile_pic" src="http://www.wempec.wisc.edu/images/default_profile_image.gif">
-        <textarea class="message_textarea">Type your comments here...</textarea>
-      </div>
-      <div class="row">
-        <button id="submit">Submit</button>
-      </div>
-    </div>
-
-    <div class="comment">
-      <div class="row">
-        <img class="profile_pic" src="http://www.wempec.wisc.edu/images/default_profile_image.gif">
-        <div class="comment_info">
-          <div class="name">Camden Reslink</div>
-          <div class="date">February 3, 2013 at 6:41pm</div>
-        </div>
-      </div>
-      <div class="message_body">
-        <div class="message_text">This is an example of some sample text.  Blah, Blah Blah.  The Super Bowl is on right now.  I need more sample text.  A person would put their comment here.  Duhhh... I can't stand people who only watch the super bowl for the commercials.</div>
-      </div>
-      <div class="row">
-        <div class="votes">
-          <button class="up_vote"><img class="vote_img" src="assets/up_vote.png"></button>
-          <span class="up_vote_num">23</span>
-          <button class="down_vote"><img class="vote_img" src="assets/down_vote.png"></button>
-          <span class="down_vote_num">14</span>
-        </div>
-        <div class="reply">
-          <button class="reply_botton">Reply</button>
-        </div>
-      </div>
-    </div>
+      <div id="all_comments"></div>
+    </section>
   </body>
 </html>
